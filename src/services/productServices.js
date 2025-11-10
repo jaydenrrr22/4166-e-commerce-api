@@ -1,6 +1,8 @@
 import {
     getAll,
     getById,
+    create,
+
 } from "../repositories/productRepo.js"
 
 export async function getAllProducts() {
@@ -16,3 +18,7 @@ export async function getProductById(id) {
         throw error;
     }
 };
+
+export async function createProduct(data) {
+    return await create(data);
+}

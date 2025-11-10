@@ -30,3 +30,10 @@ export async function getById(id) {
     });
     return product;
 };
+
+export async function create(product) {
+    const newProduct = prisma.product.create({
+        data: product,
+    });
+    return newProduct;
+};
