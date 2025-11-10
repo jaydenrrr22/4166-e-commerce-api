@@ -1,6 +1,9 @@
 {
   "name": "final-project-template",
   "version": "1.0.0",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "description": "",
   "license": "ISC",
   "author": "",
@@ -30,4 +33,5 @@
     "swagger-ui-express": "^5.0.1",
     "yamljs": "^0.3.0"
   }
+  
 }
