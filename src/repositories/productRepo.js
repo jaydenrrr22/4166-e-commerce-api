@@ -13,4 +13,20 @@ export async function getAll() {
         }
     });
     return products;
-}
+};
+
+export async function getById(id) {
+    const product = prisma.product.findUnique({
+        where: { id },
+        select: {
+            id: true,
+            name: true,
+            description: true,
+            price: true,
+            stock: true,
+            seller_id: true,
+            category_id: true
+        },
+    });
+    return product;
+};
