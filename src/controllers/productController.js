@@ -1,3 +1,7 @@
+import {
+    getAllProducts
+} from "../services/productServices.js";
+
 
 export async function getAllProductsHandler(req, res) {
     
