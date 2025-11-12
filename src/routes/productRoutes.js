@@ -4,7 +4,8 @@ import {
     getAllProductsHandler,
     getProductByIdHandler,
     createProductHandler,
-    updateProductHandler
+    updateProductHandler,
+    deleteProductHandler
 } from "../controllers/productController.js";
 
 const router = express.Router();
@@ -15,5 +16,7 @@ router.get("/:id", getProductByIdHandler);
 router.post("/", createProductHandler);
 //TODO: Add authorizeroles(SELLER, ADMIN) for updating a product
 router.put("/:id", updateProductHandler);
+//TODO: Add authorizeroles(SELLER< ADMIN) for deleting a product
+router.delete("/:id", deleteProductHandler);
 
 export default router;

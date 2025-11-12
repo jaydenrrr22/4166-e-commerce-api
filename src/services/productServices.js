@@ -2,7 +2,8 @@ import {
     getAll,
     getById,
     create,
-    update
+    update,
+    remove
 
 } from "../repositories/productRepo.js"
 
@@ -33,3 +34,13 @@ export async function updateProduct(id, data) {
         throw error;
     };
 };
+
+export async function deleteProduct(id) {
+    let result = await remove(id);
+    if (result) return;
+    else {
+        const error = new Error(`Cannot find product with id ${id}`);
+        error.status = 404;
+        throw error;
+    }
+}

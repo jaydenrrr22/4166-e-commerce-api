@@ -52,3 +52,16 @@ export async function update(id, updates) {
         throw error;
     };
 };
+
+export async function remove(id){
+    try {
+        const deletedProduct = await prisma.product.delete({
+            where: { id },
+        });
+        return deletedProduct;
+    }
+    catch (error) {
+        if (error.code === "P2025") return null;
+        throw error;
+    };
+};

@@ -3,6 +3,7 @@ import {
     getProductById,
     createProduct,
     updateProduct,
+    deleteProduct,
 } from "../services/productServices.js";
 
 
@@ -47,4 +48,10 @@ export async function updateProductHandler(req, res) {
 
     const updatedProduct = await updateProduct(id, updates);
     res.status(200).json(updatedProduct);
-}
+};
+
+export async function deleteProductHandler(req, res) {
+    let id = parseInt(req.params.id);
+    await deleteProduct(id);
+    res.status(204).send();
+};
