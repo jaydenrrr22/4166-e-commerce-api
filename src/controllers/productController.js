@@ -2,6 +2,7 @@ import {
     getAllProducts,
     getProductById,
     createProduct,
+    updateProduct,
 } from "../services/productServices.js";
 
 
@@ -35,3 +36,15 @@ export async function createProductHandler(req, res) {
     let newProduct = await createProduct(data);
     res.status(201).json(newProduct);
 };
+
+export async function updateProductHandler(req, res) {
+    let id = parseInt(req.params.id);
+    const updates = {};
+    if (req.body.name) updates.name = req.body.name;
+    if (req.body.description) updates.description = req.body.description;
+    if (req.body.price) updates.price = req.body.price;
+    if (req.body.stock) updates.stock = req.body.stock;
+
+    const updatedProduct = await updateProduct(id, updates);
+    res.status(200).json(updatedProduct);
+}

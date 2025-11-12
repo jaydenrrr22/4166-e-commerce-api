@@ -1,7 +1,7 @@
 import prisma from "../config/db.js";
 
 export async function getAll() {
-    const products = prisma.product.findMany({
+    const products = await prisma.product.findMany({
         select: {
             id: true,
             name: true,
@@ -16,7 +16,7 @@ export async function getAll() {
 };
 
 export async function getById(id) {
-    const product = prisma.product.findUnique({
+    const product = await prisma.product.findUnique({
         where: { id },
         select: {
             id: true,
@@ -32,8 +32,23 @@ export async function getById(id) {
 };
 
 export async function create(product) {
-    const newProduct = prisma.product.create({
+    const newProduct = await prisma.product.create({
         data: product,
     });
     return newProduct;
+};
+
+export async function update(id, updates) {
+    try {
+        const updatedProduct = await prisma.product.update({
+            where: { id },
+            data: updates,
+
+        });
+        return updatedProduct;
+    }
+    catch (error) {
+        if (error.code === "P2025") return null;
+        throw error;
+    };
 };

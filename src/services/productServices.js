@@ -2,6 +2,7 @@ import {
     getAll,
     getById,
     create,
+    update
 
 } from "../repositories/productRepo.js"
 
@@ -21,4 +22,14 @@ export async function getProductById(id) {
 
 export async function createProduct(data) {
     return await create(data);
-}
+};
+
+export async function updateProduct(id, data) {
+    const updatedProduct = await update(id, data);
+    if (updatedProduct) return updatedProduct;
+    else {
+        const error = new Error(`Cannot find product with id: ${id}`);
+        error.status = 404;
+        throw error;
+    };
+};
