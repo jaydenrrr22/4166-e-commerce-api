@@ -11,4 +11,4 @@ paths:
   /products:
     $ref: paths/products.yaml
   /products/{id}:
-    $ref: paths/tasks{id}.yaml
+    $ref: paths/products{id}.yaml

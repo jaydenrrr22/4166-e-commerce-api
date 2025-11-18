@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(morgan('tiny'));
 
-const specs = YAML.load("./docs/openapi.yaml");
+const specs = YAML.load("./public/bundled.yaml");
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 app.use(express.json());

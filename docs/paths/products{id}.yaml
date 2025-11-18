@@ -1,0 +1,29 @@
+get:
+  summary: Get a product by its ID number
+  tags:
+   - Products
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: The id number of the product
+      schema:
+        type: integer
+        example: 1
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Product.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+put:
+  summary: update a product
+  tags:
+   - Products
