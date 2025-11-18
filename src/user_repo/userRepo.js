@@ -58,3 +58,10 @@ export async function removeUser(id) {
     throw error;
   }
 }
+
+export async function getUserByEmail(email) {
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+  return user;
+}
