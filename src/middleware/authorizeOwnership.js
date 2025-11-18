@@ -2,7 +2,7 @@ import { getProductById } from "../services/productService.js";
 
 export async function authorizeOwnership(req, res, next) {
     const productId = parseInt(req.params.id);
-    const product = await getPostById(postId);
+    const product = await getProductById(productId);
 
     if (product.userId !== req.user.id) {
         const error = new Error('Forbidden: insufficient permission');
