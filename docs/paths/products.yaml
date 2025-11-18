@@ -1,0 +1,39 @@
+get:
+  summary: get all products
+  tags:
+    - Products
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  readOnly: true
+                  type: integer
+                  example: 1
+                name:
+                  type: String
+                  example: Keyboard
+                description:
+                  type: String
+                  example: Mechanical Keyboard
+                price:
+                  type: Float
+                  example: 2.99
+                stock:
+                  type: Integer
+                  example: 1
+                created_at:
+                  type: String
+                  example: '2025-11-12T16:51:02.711Z'
+                seller_id:
+                  type: integer
+                  example: 1
+                category:
+                  type: object
+                  example: '{id: 1, name: Electronics}'

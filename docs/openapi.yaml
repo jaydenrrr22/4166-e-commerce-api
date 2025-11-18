@@ -1,15 +1,14 @@
-openapi: '3.1.0'
+openapi: 3.1.0
 info:
-  title: "E-Commerce API"
-  version: "1.0.0"
+  title: E-Commerce API
+  version: 1.0.0
 servers:
   - url: http://localhost:3000/api
+tags:
+  - name: Products
+    description: product-related endpoints
 paths:
   /products:
-    get:
-      summary: List all products
-      responses:
-        '200':
-          description: OK
-          
-        
+    $ref: paths/products.yaml
+  /products/{id}:
+    $ref: paths/tasks{id}.yaml

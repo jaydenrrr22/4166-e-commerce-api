@@ -8,8 +8,9 @@ export async function getAll() {
             description: true,
             price: true,
             stock: true,
+            created_at: true,
             seller_id: true,
-            category_id: true
+            category: true
         }
     });
     return products;
