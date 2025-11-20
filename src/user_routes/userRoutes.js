@@ -9,6 +9,7 @@ import { authorizeRoles } from '../middleware/authorizeRoles.js';
 
 const router = express.Router();
 
+//Get all users - only ADMIN allowed
 router.get(
   '/',
   authenticate,
@@ -16,10 +17,13 @@ router.get(
   userController.getAllUsersHandler,
 );
 
+//Get user by Id - authenticated users (ADMIN or owner)
 router.get('/:id', authenticate, userController.getUserByIdHandler);
 
+//Create user
 router.post('/', validateUser, userController.createUserHandler);
 
+//Update user - authenticated users (ADMIN or owner)
 router.put(
   '/:id',
   authenticate,
@@ -27,8 +31,10 @@ router.put(
   userController.updateUserHandler,
 );
 
+//Delete user - authenticated users (ADMIN or owner)
 router.delete('/:id', authenticate, userController.deleteUserHandler);
 
+//Update user roles - only ADMIN allowed
 router.patch(
   '/:id',
   authenticate,
