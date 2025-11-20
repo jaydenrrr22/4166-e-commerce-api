@@ -1,7 +1,7 @@
 import { rateLimit } from 'express-rate-limit';
 
 const logInLimiter = rateLimit( {
-    windowsMs: 60 * 1000,
+    windowMs: 60 * 1000,
     limit: process.env.NODE_ENV === 'test' ? 1000 : 3,
     handler: (req, res, next) => {
         const error = new Error('Too many login requests. Try again later');
