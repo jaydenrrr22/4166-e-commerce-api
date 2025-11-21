@@ -14,7 +14,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-app.use('/users', userRoutes);
+app.use('/api/users', userRoutes);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
