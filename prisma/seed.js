@@ -57,8 +57,8 @@ try {
         description: 'Ergonomic mouse with smooth tracking.',
         price: 25.99,
         stock: 100,
-        seller_id: seller.id,
-        category_id: allCategories.find((c) => c.name === 'Electronics').id,
+        sellerId: seller.id,
+        categoryId: allCategories.find((c) => c.name === 'Electronics').id,
       },
     }),
     prisma.product.create({
@@ -67,8 +67,8 @@ try {
         description: 'A thrilling journey through space.',
         price: 12.5,
         stock: 50,
-        seller_id: seller.id,
-        category_id: allCategories.find((c) => c.name === 'Books').id,
+        sellerId: seller.id,
+        categoryId: allCategories.find((c) => c.name === 'Books').id,
       },
     }),
   ]);
@@ -76,14 +76,14 @@ try {
   // 🧾 Create an Order for Buyer
   const order = await prisma.order.create({
     data: {
-      user_id: buyer.id,
+      userId: buyer.id,
       total: products[0].price * 2,
       orderItems: {
         create: [
           {
-            product_id: products[0].id,
+            productId: products[0].id,
             quantity: 2,
-            unit_price: products[0].price,
+            unitPrice: products[0].price,
             subtotal: products[0].price * 2,
           },
         ],
