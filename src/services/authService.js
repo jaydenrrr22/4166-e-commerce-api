@@ -6,10 +6,10 @@ import { Prisma } from '../generated/prisma/index.js';
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
-export async function signUp(email, password) {
+export async function signUp(name, email, password) {
     const hashedPassword = await bcrypt.hash(password, 10);
     try {
-        const newUser = await createUser({ email, password: hashedPassword });
+        const newUser = await createUser({ name, email, password: hashedPassword });
         return newUser;
     } catch (error) {
         if (error instanceof Prisma.PrismaClientKnownRequestError) {
