@@ -11,7 +11,7 @@ export async function authorizeProductOwnership(req, res, next) {
     return next(error);
   }
 
-  const isOwner = product.sellerId === req.user.id;
+  const isOwner = product.userId === req.user.id;
   const isAdmin = req.user.role === "ADMIN";
   console.log(req.user.role);
   console.log(isOwner);
