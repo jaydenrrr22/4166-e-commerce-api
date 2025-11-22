@@ -11,8 +11,8 @@ export async function authorizeProductOwnership(req, res, next) {
     return next(error);
   }
 
-  const isOwner = product.userId === req.user.id;
-  const isAdmin = req.user.role === "admin";
+  const isOwner = product.sellerId === req.user.id;
+  const isAdmin = req.user.role === "ADMIN";
 
   if (!isOwner && !isAdmin) {
     const error = new Error("Forbidden: insufficient permission");
@@ -34,7 +34,7 @@ export async function authorizeOrderOwnership(req, res, next) {
   }
 
   const isOwner = order.userId === req.user.id;
-  const isAdmin = req.user.role === "admin";
+  const isAdmin = req.user.role === "ADMIN";
 
   if (!isOwner && !isAdmin) {
     const error = new Error("Forbidden: insufficient permission");
