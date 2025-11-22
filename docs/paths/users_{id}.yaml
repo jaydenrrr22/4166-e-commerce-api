@@ -1,0 +1,138 @@
+get:
+  summary: Get a user by ID
+  tags:
+    - Users
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: Id of the user
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: User found
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: ../components/schemas/ValidationError.yaml
+    '404':
+      description: User not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: User not found
+put:
+  summary: Update user information
+  tags:
+    - Users
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            role:
+              type: string
+  responses:
+    '200':
+      description: User updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: ../components/schemas/ValidationError.yaml
+    '404':
+      description: User not found
+patch:
+  summary: Update user role
+  tags:
+    - Users
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - role
+          properties:
+            role:
+              type: string
+              example: ADMIN
+  responses:
+    '200':
+      description: User role updated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              updatedUser:
+                $ref: ../components/schemas/User.yaml
+    '400':
+      $ref: ../components/schemas/ValidationError.yaml
+    '403':
+      description: ADMIN role required
+    '404':
+      description: User not found
+delete:
+  summary: Delete a user
+  tags:
+    - Users
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: User deleted successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    '403':
+      description: ADMIN role required
+    '404':
+      description: User not found
