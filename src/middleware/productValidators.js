@@ -48,7 +48,7 @@ export const validateCreateProduct = [
     .withMessage("name must be a string")
     .bail()
     .custom(async (value, {req}) => {
-      if (!await productListedBySeller(req.body.seller_id, value)) {
+      if (!await productListedBySeller(req.user.id, value)) {
         return true;
       }
       throw new Error("Product already listed by seller. Increase stock instead.");
@@ -77,14 +77,7 @@ export const validateCreateProduct = [
     .isInt()
     .withMessage("stock must be an integer"),
   
-  body('seller_id')
-    .exists({ values: 'falsy' })
-    .withMessage("seller id is required")
-    .bail()
-    .isInt()
-    .withMessage("seller id must be an integer"),
-  
-  body('category_id')
+  body('categoryId')
     .exists({ values: 'falsy' })
     .withMessage("category id is required")
     .bail()

@@ -15,18 +15,38 @@ import {
     validateUpdateProduct,
 } from "../middleware/productValidators.js"
 
+import { authenticate } from '../middleware/authenticate.js';
+import { authorizeRoles } from '../middleware/authorizeRoles.js';
+import { authorizeProductOwnership } from '../middleware/authorizeOwnership.js';
 const router = express.Router();
 
-router.get("/", validateProductQuery, getAllProductsHandler);
-router.get("/:id", validateProductId, getProductByIdHandler);
-//TODO: Add authorizeroles(SELLER) for creating a product
-router.post("/", validateCreateProduct, createProductHandler);
-//TODO: Add authorizeroles(SELLER, ADMIN) for updating a product
+router.get("/",
+    validateProductQuery,
+    getAllProductsHandler);
+    
+router.get("/:id",
+    validateProductId,
+    getProductByIdHandler);
+
+router.post("/",
+    authenticate,
+    authorizeRoles("SELLER", "ADMIN"),
+    validateCreateProduct,
+    createProductHandler);
+
 router.put("/:id",
+    authenticate,
+    authorizeRoles("SELLER", "ADMIN"),
+    authorizeProductOwnership,
     validateProductId,
     validateUpdateProduct,
     updateProductHandler);
-//TODO: Add authorizeroles(SELLER< ADMIN) for deleting a product
-router.delete("/:id", validateProductId, deleteProductHandler);
+
+router.delete("/:id",
+    authenticate,
+    authorizeRoles("SELLER", "ADMIN"),
+    authorizeProductOwnership,
+    validateProductId,
+    deleteProductHandler);
 
 export default router;

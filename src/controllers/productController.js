@@ -1,10 +1,11 @@
+import prisma from "../config/db.js";
 import {
     getAllProducts,
     getProductById,
     createProduct,
     updateProduct,
     deleteProduct,
-} from "../services/productServices.js";
+} from "../services/productService.js";
 
 
 export async function getAllProductsHandler(req, res) {
@@ -31,8 +32,8 @@ export async function createProductHandler(req, res) {
          * logged in user. (req.user.id)
          * current data is placeholder.
          */
-        seller_id: req.body.seller_id,
-        category_id: parseInt(req.body.category_id),
+        sellerId: parseInt(req.user.id),
+        categoryId: req.body.categoryId
     };
     let newProduct = await createProduct(data);
     res.status(201).json(newProduct);

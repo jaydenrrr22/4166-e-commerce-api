@@ -1,4 +1,5 @@
 import prisma from "../config/db.js";
+import { getUserById } from "../services/userServices.js";
 
 export async function getAll() {
     const products = await prisma.product.findMany({
@@ -8,9 +9,9 @@ export async function getAll() {
             description: true,
             price: true,
             stock: true,
-            created_at: true,
-            seller_id: true,
-            category: true
+            createdAt: true,
+            sellerId: true, 
+            categoryId: true
         }
     });
     return products;
@@ -25,9 +26,9 @@ export async function getById(id) {
             description: true,
             price: true,
             stock: true,
-            created_at: true,
-            seller_id: true,
-            category: true
+            createdAt: true,
+            sellerId: true,
+            categoryId: true
         },
     });
     return product;
@@ -79,13 +80,13 @@ export async function categoryExists(search) {
     return false;
 };
 
-export async function productListedBySeller(sellerId, productName) {
-    let seller_id = parseInt(sellerId);
+export async function productListedBySeller(sellerID, productName) {
+    let sellerId = parseInt(sellerID);
     let name = productName;
     const result = await prisma.product.findMany({
         where: {
             name,
-            seller_id
+            sellerId
         }
     });
     return result.length > 0;

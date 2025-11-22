@@ -1,3 +1,4 @@
+import prisma from "../config/db.js";
 import {
     getAll,
     getById,
