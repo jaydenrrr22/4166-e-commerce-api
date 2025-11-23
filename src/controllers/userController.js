@@ -32,11 +32,8 @@ export async function createUserHandler(req, res) {
 
 export async function updateUserHandler(req, res) {
   try {
-    if (req.user.role !== 'ADMIN' && req.user.id != Number(req.params.id)) {
-      return res.status(403).json({ message: 'Forbidden' });
-    }
     const updatedUser = await userServices.updateUser(
-      Number(req.user.id),
+      Number(req.params.id),
       req.body,
     );
     res.status(200).json(updatedUser);
@@ -47,8 +44,11 @@ export async function updateUserHandler(req, res) {
 
 export async function updateUserRoleHandler(req, res) {
   try {
+    if (req.user.role !== 'ADMIN' && req.user.id !== Number(req.params.id)) {
+      return res.status(403).json({ message: 'Forbidden' });
+    }
     const updatedUserRole = await userServices.updateUserRole(
-      Number(req.user.id),
+      Number(req.params.id),
       req.body.role,
     );
     res.status(200).json(updatedUserRole);
