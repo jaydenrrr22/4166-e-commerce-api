@@ -19,12 +19,7 @@ router.get(
 );
 
 //Get user by Id - authenticated users (ADMIN or owner)
-router.get(
-  '/:id',
-  authenticate,
-  authorizeAdminOrSelf,
-  userController.getUserByIdHandler,
-);
+router.get('/:id', authenticate, userController.getUserByIdHandler);
 
 //Create user
 router.post(
@@ -40,17 +35,11 @@ router.put(
   '/:id',
   authenticate,
   validateUserUpdate,
-  authorizeAdminOrSelf,
   userController.updateUserHandler,
 );
 
 //Delete user - authenticated users (ADMIN or owner)
-router.delete(
-  '/:id',
-  authenticate,
-  authorizeAdminOrSelf,
-  userController.deleteUserHandler,
-);
+router.delete('/:id', authenticate, userController.deleteUserHandler);
 
 //Update user roles - only ADMIN allowed
 router.patch(
