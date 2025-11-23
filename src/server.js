@@ -7,6 +7,7 @@ import orderRoutes from './order_routes/orderRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
+import userRoutes from './user_routes/userRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
