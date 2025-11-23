@@ -1,12 +1,27 @@
 import * as orderRepo from '../order_repositories/orderRepo.js';
 import prisma from '../config/db.js'; 
+
 //import * as productRepo from '../product_repositories/productRepo.js';
+
 export async function getAllOrders() {
-  return orderRepo.findAll();
+  return prisma.order.findMany({
+    include: { orderItems: true },
+  });
+}
+
+export async function getAllOrdersByUserId(userId) {
+  return prisma.order.findMany({
+    where: { userId },  
+    include: { orderItems: true },
+  });
+
 }
 
 export async function getOrderById(id) {
-  return orderRepo.findById(id);
+  return prisma.order.findUnique({
+    where: { id },
+    include: { orderItems: true },
+  });
 }
 
 export async function createOrder(items, userId) {

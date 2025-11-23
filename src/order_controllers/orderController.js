@@ -1,14 +1,25 @@
+
 import * as orderServices from '../order_services/orderServices.js';
 
 export async function getOrders(req, res, next) {
   try {
-    const orders = await orderServices.getAllOrders();
-    res.json(orders);
+    const user = req.user;
+
+    let orders;
+
+    if (user.role === 'ADMIN') {
+      // Admin can see all orders
+      orders = await orderServices.getAllOrders();
+    } else {
+      // Normal user only sees their own orders
+      orders = await orderServices.getAllOrdersByUserId(user.id);
+    }
+
+    res.status(200).json(orders);
   } catch (err) {
     next(err);
   }
 }
-
 
 export async function getOrderById(req, res, next) {
   try {
@@ -19,17 +30,12 @@ export async function getOrderById(req, res, next) {
       return res.status(404).json({ error: "Order not found" });
     }
 
-   
-    if (req.user.role !== 'admin' && order.user_id !== req.user.id) {
+    // Only admin or the user who owns the order can access
+    if (req.user.role !== 'ADMIN' && order.userId !== req.user.id) {
       return res.status(403).json({ error: "User not allowed to view other users’ orders." });
     }
 
-    res.status(200).json({
-      id: order.id,
-      user_id: order.user_id,
-      created_at: order.created_at,
-      orderItems: order.orderItems
-    });
+    res.status(200).json(order);
   } catch (err) {
     next(err);
   }
@@ -117,6 +123,14 @@ export async function updateOrderHandler(req, res, next) {
 export async function deleteOrderHandler(req, res, next) {
   try {
     const orderId = parseInt(req.params.id, 10);
+    const user = req.user; 
+
+    if (user.role.toUpperCase() !== 'ADMIN') {
+      const order = await orderServices.getOrderById(orderId);
+      if (order.user_id !== user.id) {
+        return res.status(403).json({ error: "You can only delete your own orders" });
+      }
+    }
 
     const deletedOrder = await orderServices.deleteOrder(orderId);
 

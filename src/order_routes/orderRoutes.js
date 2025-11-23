@@ -5,13 +5,14 @@ import { requireAdmin } from '../middleware/requireAdmin.js';
 
 const router = express.Router();
 
-router.get('/', authenticate, requireAdmin, orderController.getOrders);
+router.get('/', authenticate, orderController.getOrders);
 
-router.get('/:id', authenticate, orderController.getOrderById);
+
+router.get('/:id' ,authenticate, orderController.getOrderById);
 
 
 router.post('/', authenticate, orderController.createOrder);
 router.put('/', authenticate, orderController.updateOrderHandler);
-router.delete('/:id', authenticate, orderController.deleteOrderHandler);
+router.delete('/:id',authenticate, orderController.deleteOrderHandler);
 
 export default router;

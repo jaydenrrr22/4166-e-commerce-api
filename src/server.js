@@ -4,7 +4,7 @@ import morgan from 'morgan';
 
 import orderRoutes from './order_routes/orderRoutes.js';
 
-import userRoutes from './routes/userRoutes.js';
+
 import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
 import userRoutes from './user_routes/userRoutes.js';
