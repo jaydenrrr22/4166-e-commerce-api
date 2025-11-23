@@ -20,7 +20,7 @@ try {
     {
       name: 'Bob Smith',
       email: 'bob@example.com',
-      password: await bcrypt.hash('bob1234', 10),
+      password: await bcrypt.hash('bob12345', 10),
       role: 'SELLER',
     },
     {
