@@ -6,9 +6,9 @@ import YAML from "yamljs";
 
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
-import productRoutes from "./routes/productRoutes.js";
 
 import productRoutes from "./routes/productRoutes.js";
+import categoryRoutes from './routes/categoryRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
