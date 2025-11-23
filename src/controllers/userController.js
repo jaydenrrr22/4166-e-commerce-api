@@ -12,9 +12,6 @@ export async function getAllUsersHandler(req, res) {
 export async function getUserByIdHandler(req, res) {
   try {
     const user = await userServices.getUserById(Number(req.params.id));
-    if (req.user.role !== 'ADMIN' && req.user.id !== Number(req.params.id)) {
-      return res.status(403).json({ message: 'Forbidden' });
-    }
     res.status(200).json(user);
   } catch (error) {
     res.status(error.status || 500).json({ error: error.message });
@@ -44,9 +41,6 @@ export async function updateUserHandler(req, res) {
 
 export async function updateUserRoleHandler(req, res) {
   try {
-    if (req.user.role !== 'ADMIN' && req.user.id !== Number(req.params.id)) {
-      return res.status(403).json({ message: 'Forbidden' });
-    }
     const updatedUserRole = await userServices.updateUserRole(
       Number(req.params.id),
       req.body.role,
@@ -59,10 +53,6 @@ export async function updateUserRoleHandler(req, res) {
 
 export async function deleteUserHandler(req, res) {
   try {
-    if (req.user.role !== 'ADMIN' && req.user.id !== Number(req.params.id)) {
-      return res.status(403).json({ message: 'Forbidden' });
-    }
-
     const result = await userServices.deleteUser(Number(req.params.id));
 
     res.status(200).json(result);
