@@ -1,5 +1,5 @@
 import { getProductById } from "../services/productService.js";
-import { getOrderById } from "../services/orderService.js";
+import { getOrderById } from "../services/orderServices.js";
 
 export async function authorizeProductOwnership(req, res, next) {
   const productId = parseInt(req.params.id, 10);
