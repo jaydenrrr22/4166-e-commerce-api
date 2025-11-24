@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-
-import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js'
 import authRoutes from './routes/authRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js';
-
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(cors());
@@ -13,10 +13,11 @@ app.use(cors());
 app.use(morgan('tiny'));
 
 app.use(express.json());
-
+app.use('/api/orders', orderRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/products', productRoutes);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');

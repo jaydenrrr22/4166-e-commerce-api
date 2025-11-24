@@ -1,0 +1,52 @@
+get:
+  summary: Get all products
+  tags:
+    - Products
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Product.yaml
+post:
+  summary: Create a new product
+  tags:
+   - Products
+  requestBody:
+   required: true
+   content:
+    application/json:
+     schema:
+      type: object
+      properties:
+        name:
+          type: String
+          example: Keyboard
+        description:
+          type: String
+          example: Mechanical Keyboard
+        price:
+          type: Float
+          example: 2.99
+        stock:
+          type: Integer
+          example: 1
+        seller_id:
+          type: integer
+          example: 1
+        category_id:
+          type: integer
+          example: 1
+  responses:
+   '201':
+    description: Product created successfully
+    content:
+     application/json:
+      schema:
+       $ref: ../components/schemas/Product.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+      
