@@ -2,4 +2,4 @@ type: object
 properties:
   error:
     type: string
-    example: Eamil already exists
+    example: Email already exists
