@@ -1,4 +1,4 @@
-description: Insufficient Permissions
+description: Insufficient permission
 content:
   application/json:
     schema:

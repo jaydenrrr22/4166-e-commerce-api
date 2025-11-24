@@ -1,0 +1,71 @@
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: integer
+      minimum: 1
+    description: ID of the category
+
+get:
+  summary: Get category by ID
+  tags:
+    - Categories
+  responses:
+    '200':
+      description: Category found
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Category.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+
+put:
+  summary: Update a category
+  tags:
+    - Categories
+  description: |
+    Updates a category's information. Requires authentication and ADMIN role.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              minLength: 3
+              example: Updated category name
+  responses:
+    '200':
+      description: Category updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Category.yaml
+    '400':
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/NotLoggedIn.yaml
+    '403':
+      $ref: ../components/responses/NoPermission.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+
+delete:
+  summary: Delete a category
+  tags:
+    - Categories
+  description: |
+    Deletes a category by ID. Requires authentication and ADMIN role.
+  responses:
+    '204':
+      description: Category deleted successfully
+    '401':
+      $ref: ../components/responses/NotLoggedIn.yaml
+    '403':
+      $ref: ../components/responses/NoPermission.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml

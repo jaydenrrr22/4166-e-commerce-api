@@ -2,4 +2,4 @@ type: object
 properties:
   error:
     type: String
-    example: Insufficient Permission
+    example: Insufficient permission
