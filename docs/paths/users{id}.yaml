@@ -20,7 +20,7 @@ get:
           schema:
             $ref: ../components/schemas/User.yaml
     '401':
-      $ref: ../components/schemas/NotLoggedIn.yaml
+      $ref: ../components/responses/NotLoggedIn.yaml
     '403':
       $ref: ../components/responses/NoPermission.yaml
     '404':
@@ -65,7 +65,7 @@ put:
           schema:
             $ref: ../components/schemas/User.yaml
     '400':
-      $ref: ../components/schemas/BadRequest.yaml
+      $ref: ../components/responses/BadRequest.yaml
     '401':
       $ref: ../components/responses/NotLoggedIn.yaml
     '403':
