@@ -1,0 +1,5 @@
+description: Eamil already exists
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/EmailExistError.yaml

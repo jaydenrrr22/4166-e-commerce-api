@@ -9,6 +9,8 @@ tags:
     description: product-related endpoints
   - name: Categories
     description: category-related endpoints
+  - name: Users
+    description: user-related endpoints
 paths:
   /products:
     $ref: paths/products.yaml
@@ -18,3 +20,7 @@ paths:
     $ref: paths/categories.yaml
   /categories/{id}:
     $ref: paths/categories{id}.yaml
+  /users:
+    $ref: paths/users.yaml
+  /users/{id}:
+    $ref: paths/users{id}.yaml
