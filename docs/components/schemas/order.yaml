@@ -8,4 +8,4 @@ properties:
   orderItems:
     type: array
     items:
-      $ref: './OrderItem.yaml'
+      $ref: './orderItem.yaml'

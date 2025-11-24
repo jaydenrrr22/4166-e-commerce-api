@@ -1,5 +1,7 @@
 get:
   summary: Get all orders
+  tags:
+    - Orders
   responses:
     '200':
       description: OK
@@ -12,6 +14,8 @@ get:
 
 post:
   summary: Create a new order
+  tags:
+    - Orders
   requestBody:
     required: true
     content:

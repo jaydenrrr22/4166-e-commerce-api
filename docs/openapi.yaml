@@ -15,14 +15,13 @@ tags:
     description: user-related endpoints
 paths:
   /products:
-    $ref: './paths/products.yaml'
+    $ref: ./paths/products.yaml
   /products/{id}:
-    $ref: './paths/products{id}.yaml'
+    $ref: ./paths/products{id}.yaml
   /orders:
-    $ref: './paths/orders.yaml'
+    $ref: ./paths/orders.yaml
   /orders/{id}:
-    $ref: './paths/orders{id}.yaml'
-    $ref: paths/products{id}.yaml
+    $ref: ./paths/orders{id}.yaml
   /categories:
     $ref: paths/categories.yaml
   /categories/{id}:
