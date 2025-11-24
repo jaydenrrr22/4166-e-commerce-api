@@ -7,8 +7,18 @@ servers:
 tags:
   - name: Products
     description: product-related endpoints
+  - name: Users
+    description: user-related endpoints
 paths:
   /products:
     $ref: paths/products.yaml
   /products/{id}:
     $ref: paths/products{id}.yaml
+  /categories:
+    $ref: paths/categories.yaml
+  /categories/{id}:
+    $ref: paths/categories{id}.yaml
+  /users:
+    $ref: paths/users.yaml
+  /users/{id}:
+    $ref: paths/users{id}.yaml
