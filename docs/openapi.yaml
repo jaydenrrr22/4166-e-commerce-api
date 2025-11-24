@@ -9,7 +9,10 @@ tags:
     description: Product-related endpoints
   - name: Orders
     description: Order-related endpoints
-
+  - name: Categories
+    description: category-related endpoints
+  - name: Users
+    description: user-related endpoints
 paths:
   /products:
     $ref: './paths/products.yaml'
@@ -19,3 +22,12 @@ paths:
     $ref: './paths/orders.yaml'
   /orders/{id}:
     $ref: './paths/orders{id}.yaml'
+    $ref: paths/products{id}.yaml
+  /categories:
+    $ref: paths/categories.yaml
+  /categories/{id}:
+    $ref: paths/categories{id}.yaml
+  /users:
+    $ref: paths/users.yaml
+  /users/{id}:
+    $ref: paths/users{id}.yaml

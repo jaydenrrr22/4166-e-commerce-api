@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    minLength: 3
+    example: Electronics
+required:
+  - id
+  - name

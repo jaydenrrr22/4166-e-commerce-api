@@ -16,9 +16,7 @@ get:
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: ../components/schemas/Product.yaml
+            $ref: ../components/schemas/Product.yaml
     '400':
       $ref: ../components/responses/BadRequest.yaml
     '404':
@@ -55,16 +53,21 @@ put:
           type: Integer
           example: 1
   responses:
-   '200':
-    description: Product updated successfully
-    content:
-     application/json:
-      schema:
-       $ref: ../components/schemas/Product.yaml
+    '200':
+      description: Product updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Product.yaml
     '400':
-     $ref: ../components/responses/BadRequest.yaml
+      $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/NotLoggedIn.yaml
+    '403':
+      $ref: ../components/responses/NoPermission.yaml
     '404':
-     $ref: ../components/responses/NotFound.yaml
+      $ref: ../components/responses/NotFound.yaml
+    
 delete:
   summary: Delete a product by its ID number
   tags:
@@ -86,6 +89,10 @@ delete:
             type: object
     '400':
       $ref: ../components/responses/BadRequest.yaml
+    '401':
+      $ref: ../components/responses/NotFound.yaml
+    '403':
+      $ref: ../components/responses/NoPermission.yaml
     '404':
       $ref: ../components/responses/NotFound.yaml
   

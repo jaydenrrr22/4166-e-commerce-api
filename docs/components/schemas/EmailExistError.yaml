@@ -2,4 +2,4 @@ type: object
 properties:
   error:
     type: string
-    example: Not found
+    example: Email already exists

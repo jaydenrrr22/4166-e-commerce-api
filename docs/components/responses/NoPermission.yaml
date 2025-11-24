@@ -1,0 +1,5 @@
+description: Insufficient permission
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/NotAuthorized.yaml
