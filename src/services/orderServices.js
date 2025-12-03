@@ -67,12 +67,10 @@ export async function createOrder(items, userId) {
 
 
 export async function updateOrder(orderId, items, userId) {
- 
   await prisma.orderItem.deleteMany({
     where: { orderId },
   });
 
- 
   let total = 0;
   const orderItemsData = [];
 
@@ -86,28 +84,29 @@ export async function updateOrder(orderId, items, userId) {
     total += subtotal;
 
     orderItemsData.push({
-      productId: item.product_id,   
+      productId: item.product_id,
       quantity: item.quantity,
       unitPrice: product.price,
       subtotal,
     });
   }
 
-  
   const updatedOrder = await prisma.order.update({
     where: { id: orderId },
     data: {
       total,
-      user: { connect: { id: userId } },
-      updatedAt: new Date(),
-      orderItems: { create: orderItemsData },
+      user: { connect: { id: userId } }, 
+      orderItems: { create: orderItemsData }, 
     },
     include: { orderItems: true },
   });
 
-  return updatedOrder;
+  
+  return {
+    ...updatedOrder,
+    updatedAt: new Date(),
+  };
 }
-
 
 export async function deleteOrder(orderId) {
   try {
