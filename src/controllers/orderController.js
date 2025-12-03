@@ -69,14 +69,21 @@ export async function updateOrderHandler(req, res, next) {
     const updatedOrder = await orderServices.updateOrder(orderId, items, userId, userRole);
 
     if (!updatedOrder) {
-      return res.status(404).json({ error: 'Order not found or you are not authorized to update it' });
+      return res.status(404).json({ 
+        error: 'Order not found or you are not authorized to update it' 
+      });
     }
 
-    res.status(200).json(updatedOrder);
+    res.status(200).json({ 
+      ...updatedOrder,
+      updatedAt: new Date()
+    });
+
   } catch (err) {
     next(err);
   }
 }
+
 
 
 export async function deleteOrderHandler(req, res, next) {
